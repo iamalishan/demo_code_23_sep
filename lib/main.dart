@@ -1,3 +1,4 @@
+import 'package:demo_code_23_sep/detailpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,12 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       "name": "Apple",
       "picture":
-          "https://images.unsplash.com/photo-1580418696996-4f391b748a0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Samsung",
       "picture":
-          "https://images.unsplash.com/photo-1568378711447-f5eef04d85b5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2Ftc3VuZyUyMHBob25lfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Huawei",
@@ -100,7 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
-                  return BrandCard();
+                  return BrandCard(
+                    name: dummydata[index]['name'],
+                    picture: dummydata[index]['picture'],
+                  );
                 }),
           ],
         ),
@@ -121,14 +125,42 @@ class BrandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          child: Text('$name'),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => DetailPage(
+                    name: name,
+                    picture: picture,
+                  )),
+        );
+      },
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Text(
+                '$name',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[300]),
+              ),
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              child: FadeInImage.assetNetwork(
+                  fit: BoxFit.fitWidth,
+                  placeholder: 'assets/spinner-gif-13.gif',
+                  image: picture),
+            )
+          ],
         ),
-      ],
+      ),
     );
   }
 }

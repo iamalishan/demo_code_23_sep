@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Demo Code'),
+      home: MyHomePage(title: 'Easy Shop'),
     );
   }
 }
@@ -79,8 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
+          title: Text(
+            widget.title,
+          ),
+          centerTitle: true,
+          actions: [Icon(Icons.location_on)]),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -112,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Send Message',
-        child: Icon(Icons.send),
+        child: Icon(Icons.shopping_bag),
       ),
     );
   }

@@ -30,39 +30,48 @@ class _MyHomePageState extends State<MyHomePage> {
   var dummydata = [
     {
       "name": "Apple",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://images.unsplash.com/photo-1580418696996-4f391b748a0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
     },
     {
       "name": "Samsung",
-      "picture": "assets/drawable/view_business_ic.png",
+      "picture":
+          "https://images.unsplash.com/photo-1568378711447-f5eef04d85b5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2Ftc3VuZyUyMHBob25lfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     },
     {
       "name": "Huawei",
-      "picture": "assets/drawable/notification_img.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Oppo",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Vivo",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Haeir",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "Lenovo",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "HTC",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
     {
       "name": "LG",
-      "picture": "assets/drawable/profile_ic.png",
+      "picture":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ristoonstage.jpg/220px-Ristoonstage.jpg",
     },
   ];
   @override
@@ -71,7 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,12 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: dummydata.length,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
-                  return Card();
+                  return BrandCard();
                 }),
           ],
         ),
@@ -109,8 +121,14 @@ class BrandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('$name'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          child: Text('$name'),
+        ),
+      ],
     );
   }
 }
